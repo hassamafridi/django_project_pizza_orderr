@@ -1,0 +1,24 @@
+ {% extends 'base.html' %} 
+ {% block start %}
+ 
+ <div class="container mt-5">
+     <div class="row">
+         {% for pizza in pizza %}
+         <div class="col-md-3">
+                <div class="card shadow-lg" style="width : 18rem;">
+               <img src="/media/{{pizza.image}}" style="height : 200px" class="card-img-top" >
+               <div class="card-body">
+                   <h5 class="card-title"> {{pizza.pizza_name}}
+                </h5>
+                <p> price - {{pizza.price}} | categorys {{pizza.category.category}}</p>
+                    <a href="{% url 'add_cart' pizza.uid %}" class="btn btn-success">cart <i class="fa-solid fa-cart-shopping-fast"></i></a>
+                    <a href="#" class="btn btn-success">20% discount</a>
+
+                </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock %}
+

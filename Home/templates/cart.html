@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block start %}
+<div class="container cart shadow-lg mt-5">
+    <table class="table">
+        <thead>
+            <tr> <th scope="col">S No</th>
+                <th scope="col">Action</th>
+                <th scope="col">Name</th>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cartItems in cart.cartItems.all %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td><a href="{% url 'remove_cart_items' cartItems.uid %}" class="btn btn-danger" >Delete<i class="fa-solid fa-trash-slash"></i></a> </td>
+                <td><img src="/media/{{cartItems.pizza.image}}/" style="height: 100px ;weight :100px"></td>
+                <td>{{cartItems.pizza.pizza_name}}</td>
+                <td>{{cartItems.pizza.price}}</td>
+                <td>1</td>
+                <td>{{cartItems.pizza.price}}</td>
+                <td>
+                   
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+         <th scope="row">
+             <td></td>
+             <td></td>
+                <td></td>   
+                <td></td>
+         </td>
+        <td>
+            <b>Grand Total<b>
+                <br>
+              
+                <a href="{{payment_url}}" class="btn btn-success">Pay Now {{cart.get_sum_total}}</a>
+        </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+{% endblock %}
